@@ -30,5 +30,5 @@ class PasswordReminder
         $this->dbConnection = $dbConnection;
     }
   
-    // Faz alguma coisa
+    // Do something
 }

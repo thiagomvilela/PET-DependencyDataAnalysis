@@ -1,5 +1,3 @@
-package com.company;
-
 // Rule 01: Methods of the X object itself.
 public class ClassX {
 

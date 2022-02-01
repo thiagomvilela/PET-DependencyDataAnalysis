@@ -1,11 +1,6 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -31,9 +26,23 @@ public class GUI extends JFrame {
 	String localDir = System.getProperty("user.dir");
 	BufferedImage logo = ImageIO.read(new File(localDir + "/resources/Logo-Stellantis.png"));
 	
-	int resizer = 5;
+	int resizer = 4;
 	
 	Image logoR = logo.getScaledInstance(logo.getWidth()/resizer, logo.getHeight()/resizer, Image.SCALE_DEFAULT);
+	
+	public JButton newBtn(String name){
+		JButton btn;
+		Color azul = new Color(37,51,125);
+		btn = new JButton(name);	
+		btn.setBackground(azul);
+		btn.setForeground(Color.WHITE);
+		btn.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE, 3));
+		btn.setPreferredSize(new Dimension(150, 30));
+		btn.setFocusable(false);
+		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		
+		return btn;
+	}
 	
 	public void varDirectory() throws IOException{
 		setLayout(new BorderLayout());
@@ -51,11 +60,11 @@ public class GUI extends JFrame {
 		panelBotoes.setLayout(new FlowLayout());
 		panelBotoes.setBackground(azul);
 		
-		JButton botaoVoltar = new JButton("Back to Menu");
+		JButton botaoVoltar = newBtn("Back to Menu");
 		
 		panelBotoes.add(botaoVoltar);
 		
-		JButton botaoBuscar = new JButton("Generate Report");
+		JButton botaoBuscar = newBtn("Find Variable Address");
 		
 		panelBotoes.add(botaoBuscar);
 		
@@ -134,11 +143,11 @@ public class GUI extends JFrame {
 		panelBotoes.setLayout(new FlowLayout());
 		panelBotoes.setBackground(azul);
 		
-		JButton botaoVoltar = new JButton("Back to Menu");
+		JButton botaoVoltar = newBtn("Back to Menu");
 		
 		panelBotoes.add(botaoVoltar);
 		
-		JButton botaoBuscar = new JButton("Generate Report");
+		JButton botaoBuscar = newBtn("Generate Report");
 		
 		panelBotoes.add(botaoBuscar);
 		
@@ -178,8 +187,8 @@ public class GUI extends JFrame {
 		JPanel logoPanel = new JPanel();
 		logoPanel.setBackground(azul);
 		panelBotoes.setBackground(azul);
-		JButton botaoVarDir = new JButton("Variable Directory");
-		JButton botaoDepFinder = new JButton("DepFinder");
+		JButton botaoVarDir = newBtn("Variable Directory");
+		JButton botaoDepFinder = newBtn("DepFinder");
 		
 		JLabel logolabel = new JLabel(new ImageIcon(logoR));	
 		logoPanel.add(logolabel);

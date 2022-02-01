@@ -21,10 +21,10 @@ import javax.swing.JTextField;
 
 public class GUI extends JFrame {
 	public GUI() throws IOException {
-		super("C++ Parser");
+		super("Dependency Finder");
 		guiMain();
 	}
-	Color azul = new Color(19,54,124);
+	Color azul = new Color(37,51,125);
 	int select = 0;
 	String localDir = System.getProperty("user.dir");
 	BufferedImage logo = ImageIO.read(new File(localDir + "/resources/Logo-Stellantis.png"));
@@ -36,10 +36,10 @@ public class GUI extends JFrame {
 		logoPanel.setBackground(azul);
 		panel.setBackground(azul);
 		
-		JLabel var = new JLabel("Variável");
+		JLabel var = new JLabel("Enter variable name");
 		var.setForeground(Color.white);
-		JTextField varField = new JTextField(40);
-		JButton botaoBuscar = new JButton("Buscar");
+		JTextField varField = new JTextField(30);
+		JButton botaoBuscar = new JButton("Generate Report");
 		JLabel logolabel = new JLabel(new ImageIcon(logo));	
 		
 		panel.add(var);
@@ -59,9 +59,9 @@ public class GUI extends JFrame {
 		panelTitulo.setLayout(new FlowLayout());
 		panelTitulo.setBackground(azul);
 		
-		JLabel titulo = new JLabel ("PARSER");
+		JLabel titulo = new JLabel ("C++ Parser");
 		titulo.setForeground(Color.white);
-		titulo.setFont(new Font("Verdana", Font.PLAIN, 16));
+		titulo.setFont(new Font("Verdana", Font.PLAIN, 14));
 		
 		panelTitulo.add(titulo);
 		
@@ -69,12 +69,12 @@ public class GUI extends JFrame {
 		panelInput.setLayout(new FlowLayout());
 		panelInput.setBackground(azul);
 		
-		JLabel var = new JLabel("Variável");
+		JLabel var = new JLabel("Enter variable name");
 		var.setForeground(Color.white);
 		JTextField varField = new JTextField(40);
 		
 		
-		JLabel diretorio = new JLabel("Diretório");
+		JLabel diretorio = new JLabel("Load Folder");
 		diretorio.setForeground(Color.white);
 		JTextField dirField = new JTextField(40);
 		
@@ -90,7 +90,7 @@ public class GUI extends JFrame {
 		panelBotoes.setLayout(new FlowLayout());
 		panelBotoes.setBackground(azul);
 		
-		JButton botaoBuscar = new JButton("Buscar");
+		JButton botaoBuscar = new JButton("Generate Report");
 		
 		
 		panelBotoes.add(botaoBuscar);
@@ -106,7 +106,7 @@ public class GUI extends JFrame {
 		logoPanel.setBackground(azul);
 		panelBotoes.setBackground(azul);
 		JButton botaoVarDeep = new JButton("Variable Directory");
-		JButton botaoDeepFinder = new JButton("Deep Finder");
+		JButton botaoDeepFinder = new JButton("DepFinder");
 		JLabel logolabel = new JLabel(new ImageIcon(logo));	
 		logoPanel.add(logolabel);
 		panelBotoes.add(botaoDeepFinder);

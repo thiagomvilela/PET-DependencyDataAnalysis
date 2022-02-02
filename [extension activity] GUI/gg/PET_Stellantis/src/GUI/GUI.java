@@ -28,7 +28,7 @@ public class GUI extends JFrame {
 	int select = 0;
 	String localDir = System.getProperty("user.dir");
 	BufferedImage logo = ImageIO.read(new File(localDir + "/resources/Logo-Stellantis.png"));
-	int resizer = 3;
+	int resizer = 2;
 	Image logoR = logo.getScaledInstance(logo.getWidth()/resizer, logo.getHeight()/resizer, Image.SCALE_DEFAULT);	
 
 	Border margin = new EmptyBorder(20,10,20,10);

@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame {
 	public GUI() throws IOException {
@@ -25,10 +28,14 @@ public class GUI extends JFrame {
 	int select = 0;
 	String localDir = System.getProperty("user.dir");
 	BufferedImage logo = ImageIO.read(new File(localDir + "/resources/Logo-Stellantis.png"));
-	
-	int resizer = 4;
-	
-	Image logoR = logo.getScaledInstance(logo.getWidth()/resizer, logo.getHeight()/resizer, Image.SCALE_DEFAULT);
+	int resizer = 3;
+	Image logoR = logo.getScaledInstance(logo.getWidth()/resizer, logo.getHeight()/resizer, Image.SCALE_DEFAULT);	
+
+	Border margin = new EmptyBorder(20,10,20,10);
+
+	int fontSize = 14;
+
+	Font f = new Font("Arial", Font.BOLD, fontSize);
 	
 	public JButton newBtn(String name){
 		JButton btn;
@@ -37,28 +44,58 @@ public class GUI extends JFrame {
 		btn.setBackground(azul);
 		btn.setForeground(Color.WHITE);
 		btn.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE, 3));
-		btn.setPreferredSize(new Dimension(150, 30));
+		btn.setSize(getPreferredSize());
+		btn.setPreferredSize(new Dimension(200, 30));
 		btn.setFocusable(false);
 		btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btn.setFont(f);
 		
 		return btn;
+	}
+	
+	public JLabel getLogo() {
+		JLabel logo = new JLabel(new ImageIcon(logoR));
+		Border border = logo.getBorder();
+		Border marginL = new EmptyBorder(10,10,10,10);
+		logo.setBorder(new CompoundBorder(border, marginL));
+		return logo;
+	}
+	
+	public JPanel getBigPanel(int rows) {
+		JPanel bigPanel = new JPanel();
+		bigPanel.setLayout(new GridLayout(rows,1));
+		bigPanel.setBackground(azul);
+		
+		Border borderP = bigPanel.getBorder();
+		Border marginP = new EmptyBorder(20,10,30,10);
+		bigPanel.setBorder(new CompoundBorder(borderP, marginP));
+		
+		return bigPanel;
 	}
 	
 	public void varDirectory() throws IOException{
 		setLayout(new BorderLayout());
 		setTitle("Variable Directory");
+		
 		JPanel panel = new JPanel();
 		JPanel logoPanel = new JPanel();
 		logoPanel.setBackground(azul);
-		panel.setBackground(azul);
+		panel.setBackground(azul);		
+		Border borderPanel = panel.getBorder();
+		panel.setBorder(new CompoundBorder(borderPanel, margin));
 		
 		JLabel var = new JLabel("Enter Variable Name");
 		var.setForeground(Color.white);
-		JTextField varField = new JTextField(40);
+		var.setFont(f);
+		JTextField varField = new JTextField(30);
+		varField.setFont(f);
 		
 		JPanel panelBotoes = new JPanel();
 		panelBotoes.setLayout(new FlowLayout());
 		panelBotoes.setBackground(azul);
+		
+		Border borderBtns = panelBotoes.getBorder();
+		panelBotoes.setBorder(new CompoundBorder(borderBtns, margin));
 		
 		JButton botaoVoltar = newBtn("Back to Menu");
 		
@@ -69,22 +106,24 @@ public class GUI extends JFrame {
 		panelBotoes.add(botaoBuscar);
 		
 		
-		JLabel logolabel = new JLabel(new ImageIcon(logoR));	
+		JLabel logolabel = getLogo();	
 		
+		JPanel bigPanel = getBigPanel(3);
 		panel.add(var);
 		panel.add(varField);
 		logoPanel.add(logolabel);
-		add(logoPanel, BorderLayout.NORTH);
-		add(panel,BorderLayout.CENTER);
-		add(panelBotoes, BorderLayout.SOUTH);
+		
+		add(bigPanel, BorderLayout.CENTER);
+		
+		bigPanel.add(logoPanel, BorderLayout.NORTH);
+		bigPanel.add(panel,BorderLayout.CENTER);
+		bigPanel.add(panelBotoes, BorderLayout.SOUTH);
 		
 		botaoVoltar.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
-					remove(panelBotoes);
-					remove(logoPanel);
-					remove(panel);
+					remove(bigPanel);
 					guiMain();
 					invalidate();
 					validate();
@@ -105,33 +144,27 @@ public class GUI extends JFrame {
 		setLayout(new BorderLayout());
 		setTitle("DepFinder");
 		
-		JPanel panelTitulo = new JPanel();
-		panelTitulo.setLayout(new FlowLayout());
-		panelTitulo.setBackground(azul);
-		
-		//JLabel titulo = new JLabel ("C++ Parser");
-		//titulo.setForeground(Color.white);
-		//titulo.setFont(new Font("Verdana", Font.PLAIN, 14));
-		
-		//panelTitulo.add(titulo);
-		
 		JPanel logoPanel = new JPanel();
 		logoPanel.setBackground(azul);
 		
 		JPanel panelInput = new JPanel();
 		panelInput.setLayout(new FlowLayout());
 		panelInput.setBackground(azul);
+		panelInput.setFont(f);
 		
 		JLabel var = new JLabel("Enter Variable Name");
 		var.setForeground(Color.white);
-		JTextField varField = new JTextField(40);
-		
+		var.setFont(f);
+		JTextField varField = new JTextField(30);
+		varField.setFont(f);
 		
 		JLabel diretorio = new JLabel("Enter Variable Folder");
+		diretorio.setFont(f);
 		diretorio.setForeground(Color.white);
-		JTextField dirField = new JTextField(40);
-		
-		JLabel logolabel = new JLabel(new ImageIcon(logoR));	
+
+		JTextField dirField = new JTextField(30);
+		dirField.setFont(f);
+		JLabel logolabel = getLogo();
 		
 		panelInput.add(var);
 		panelInput.add(varField);
@@ -143,6 +176,9 @@ public class GUI extends JFrame {
 		panelBotoes.setLayout(new FlowLayout());
 		panelBotoes.setBackground(azul);
 		
+		Border borderBtns = panelBotoes.getBorder();
+		panelBotoes.setBorder(new CompoundBorder(borderBtns, margin));
+		
 		JButton botaoVoltar = newBtn("Back to Menu");
 		
 		panelBotoes.add(botaoVoltar);
@@ -151,20 +187,19 @@ public class GUI extends JFrame {
 		
 		panelBotoes.add(botaoBuscar);
 		
+		JPanel bigPanel = getBigPanel(3);
 		
-		//add(panelTitulo, BorderLayout.NORTH);
-		add(logoPanel, BorderLayout.NORTH);
-		add(panelInput, BorderLayout.CENTER);
-		add(panelBotoes, BorderLayout.SOUTH);	
+		add(bigPanel, BorderLayout.CENTER);
+		
+		bigPanel.add(logoPanel, BorderLayout.NORTH);
+		bigPanel.add(panelInput, BorderLayout.CENTER);
+		bigPanel.add(panelBotoes, BorderLayout.SOUTH);	
 		
 		botaoVoltar.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
-					remove(panelBotoes);
-					remove(panelTitulo);
-					remove(panelInput);
-					remove(logoPanel);
+					remove(bigPanel);
 					guiMain();
 					invalidate();
 					validate();
@@ -179,6 +214,7 @@ public class GUI extends JFrame {
 		});
 		
 	}
+	
 	public void guiMain() throws IOException{
 		setTitle("Dependency Finder");
 		
@@ -190,21 +226,25 @@ public class GUI extends JFrame {
 		JButton botaoVarDir = newBtn("Variable Directory");
 		JButton botaoDepFinder = newBtn("DepFinder");
 		
-		JLabel logolabel = new JLabel(new ImageIcon(logoR));	
+		JLabel logolabel = getLogo();	
 		logoPanel.add(logolabel);
 		
 		panelBotoes.add(botaoDepFinder);
 		panelBotoes.add(botaoVarDir);
 		
-		add(panelBotoes, BorderLayout.CENTER);
-		add(logoPanel, BorderLayout.NORTH);
+		JPanel bigPanel = getBigPanel(2);
+		
+		add(bigPanel, BorderLayout.CENTER);
+		
+		
+		bigPanel.add(logoPanel, BorderLayout.NORTH);
+		bigPanel.add(panelBotoes, BorderLayout.CENTER);
 		
 		botaoVarDir.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		    	try {
-					remove(panelBotoes);
-					remove(logoPanel);
+					remove(bigPanel);
 					varDirectory();
 					invalidate();
 					validate();
@@ -221,8 +261,7 @@ public class GUI extends JFrame {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        try {
-					remove(panelBotoes);
-					remove(logoPanel);
+					remove(bigPanel);
 					depFinderInput();
 					invalidate();
 					validate();

@@ -101,7 +101,7 @@ public class GUI extends JFrame {
 		
 		panelBotoes.add(botaoVoltar);
 		
-		JButton botaoBuscar = newBtn("Find Variable Address");
+		JButton botaoBuscar = newBtn("Find Variable File");
 		
 		panelBotoes.add(botaoBuscar);
 		
@@ -158,7 +158,7 @@ public class GUI extends JFrame {
 		JTextField varField = new JTextField(30);
 		varField.setFont(f);
 		
-		JLabel diretorio = new JLabel("Enter Variable Folder");
+		JLabel diretorio = new JLabel("Enter Workspace Folder");
 		diretorio.setFont(f);
 		diretorio.setForeground(Color.white);
 
@@ -223,7 +223,7 @@ public class GUI extends JFrame {
 		JPanel logoPanel = new JPanel();
 		logoPanel.setBackground(azul);
 		panelBotoes.setBackground(azul);
-		JButton botaoVarDir = newBtn("Variable Directory");
+		JButton botaoVarDir = newBtn("VarFinder");
 		JButton botaoDepFinder = newBtn("DepFinder");
 		
 		JLabel logolabel = getLogo();	

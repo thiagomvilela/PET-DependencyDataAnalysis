@@ -166,10 +166,19 @@ public class GUI extends JFrame {
 		dirField.setFont(f);
 		JLabel logolabel = getLogo();
 		
+		JLabel output = new JLabel("Enter Output Folder");
+		output.setFont(f);
+		output.setForeground(Color.white);
+
+		JTextField outField = new JTextField(30);
+		outField.setFont(f);
+		
 		panelInput.add(var);
 		panelInput.add(varField);
 		panelInput.add(diretorio);
 		panelInput.add(dirField);
+		panelInput.add(output);
+		panelInput.add(outField);	
 		logoPanel.add(logolabel);
 		
 		JPanel panelBotoes = new JPanel();
@@ -229,8 +238,8 @@ public class GUI extends JFrame {
 		JLabel logolabel = getLogo();	
 		logoPanel.add(logolabel);
 		
-		panelBotoes.add(botaoDepFinder);
 		panelBotoes.add(botaoVarDir);
+		panelBotoes.add(botaoDepFinder);
 		
 		JPanel bigPanel = getBigPanel(2);
 		

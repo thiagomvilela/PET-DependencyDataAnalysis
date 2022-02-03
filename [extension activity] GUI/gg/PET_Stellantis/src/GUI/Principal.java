@@ -17,7 +17,7 @@ public class Principal {
 		GUI gui = new GUI();
 		Color azul = new Color(37,51,125);
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gui.setSize(500, 400);
+		gui.setSize(500, 550);
 		gui.setLocation((
 				Toolkit.getDefaultToolkit().getScreenSize().width  - gui.getSize().width) / 2, 
 				(Toolkit.getDefaultToolkit().getScreenSize().height - gui.getSize().height) / 2

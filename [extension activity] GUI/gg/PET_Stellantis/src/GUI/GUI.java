@@ -11,6 +11,7 @@ import java.text.Normalizer.Form;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,7 +29,7 @@ public class GUI extends JFrame {
 	int select = 0;
 	String localDir = System.getProperty("user.dir");
 	BufferedImage logo = ImageIO.read(new File(localDir + "/resources/Logo-Stellantis.png"));
-	int resizer = 2;
+	int resizer = 3;
 	Image logoR = logo.getScaledInstance(logo.getWidth()/resizer, logo.getHeight()/resizer, Image.SCALE_DEFAULT);	
 
 	Border margin = new EmptyBorder(20,10,20,10);
@@ -37,9 +38,9 @@ public class GUI extends JFrame {
 
 	Font f = new Font("Arial", Font.BOLD, fontSize);
 	
-	private String var1 = "1";
-	private String var2 = "2";		
-	private String var3 = "3";
+	private String var1; // variable
+	private String var2; // workspace		
+	private String var3; // output 
 	
 	public String getVar1() {
 		return var1;
@@ -74,6 +75,27 @@ public class GUI extends JFrame {
 		btn.setFont(f);
 		
 		return btn;
+	}
+	
+	public void createBrowse(JTextField field, JButton botaoBrowse) {
+		botaoBrowse.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent e) {
+		        JFileChooser fileChooser = new JFileChooser();
+	 
+		        // diretorio
+		        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		 
+		        // arquivo
+		        //fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		 
+		        fileChooser.setAcceptAllFileFilterUsed(false);
+		 
+		        int rVal = fileChooser.showOpenDialog(null);
+		        if (rVal == JFileChooser.APPROVE_OPTION) {
+		          field.setText(fileChooser.getSelectedFile().toString());
+		        }
+		      }
+		    });
 	}
 	
 	public JLabel getLogo() {
@@ -132,9 +154,7 @@ public class GUI extends JFrame {
 		    	setVar1(varField.getText());
 		    }
 		
-		});
-		
-		
+		});	
 		
 		
 		panelBotoes.add(botaoBuscar);
@@ -207,12 +227,28 @@ public class GUI extends JFrame {
 		JTextField outField = new JTextField(30);
 		outField.setFont(f);
 		
+		JButton dirBrowse = newBtn("Browse Workspase Folder");
+		
+		createBrowse(dirField, dirBrowse);
+		
+		JButton outputBrowse = newBtn("Browse Output Folder");
+		
+		createBrowse(outField, outputBrowse);	
+		
+		JPanel panelBrowse = new JPanel();
+		panelBrowse.setBackground(azul);
+		panelBrowse.setLayout(new FlowLayout());
+		
 		panelInput.add(var);
 		panelInput.add(varField);
 		panelInput.add(diretorio);
 		panelInput.add(dirField);
 		panelInput.add(output);
-		panelInput.add(outField);	
+		panelInput.add(outField);
+		
+		panelBrowse.add(dirBrowse);
+		panelBrowse.add(outputBrowse);
+		
 		logoPanel.add(logolabel);
 		
 		JPanel panelBotoes = new JPanel();
@@ -230,13 +266,14 @@ public class GUI extends JFrame {
 		
 		panelBotoes.add(botaoBuscar);
 		
-		JPanel bigPanel = getBigPanel(3);
+		JPanel bigPanel = getBigPanel(4);
 		
 		add(bigPanel, BorderLayout.CENTER);
 		
-		bigPanel.add(logoPanel, BorderLayout.NORTH);
-		bigPanel.add(panelInput, BorderLayout.CENTER);
-		bigPanel.add(panelBotoes, BorderLayout.SOUTH);	
+		bigPanel.add(logoPanel);
+		bigPanel.add(panelInput);
+		bigPanel.add(panelBrowse);
+		bigPanel.add(panelBotoes);	
 		
 		botaoVoltar.addActionListener(new ActionListener() {
 		    @Override

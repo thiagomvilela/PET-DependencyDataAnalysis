@@ -37,6 +37,29 @@ public class GUI extends JFrame {
 
 	Font f = new Font("Arial", Font.BOLD, fontSize);
 	
+	private String var1 = "1";
+	private String var2 = "2";		
+	private String var3 = "3";
+	
+	public String getVar1() {
+		return var1;
+	}
+	public void setVar1(String var1) {
+		this.var1 = var1;
+	}
+	public String getVar2() {
+		return var2;
+	}
+	public void setVar2(String var2) {
+		this.var2 = var2;
+	}
+	public String getVar3() {
+		return var3;
+	}
+	public void setVar3(String var3) {
+		this.var3 = var3;
+	}
+	
 	public JButton newBtn(String name){
 		JButton btn;
 		Color azul = new Color(37,51,125);
@@ -102,6 +125,17 @@ public class GUI extends JFrame {
 		panelBotoes.add(botaoVoltar);
 		
 		JButton botaoBuscar = newBtn("Find Variable File");
+		
+		botaoBuscar.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	setVar1(varField.getText());
+		    }
+		
+		});
+		
+		
+		
 		
 		panelBotoes.add(botaoBuscar);
 		
@@ -222,6 +256,16 @@ public class GUI extends JFrame {
 		
 		});
 		
+		botaoBuscar.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	setVar1(varField.getText());
+		    	setVar2(dirField.getText());
+				setVar3(outField.getText());
+
+		    }
+		
+		});
 	}
 	
 	public void guiMain() throws IOException{

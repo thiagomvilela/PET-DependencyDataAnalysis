@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 public class GUI extends JFrame {
 	public GUI() throws IOException {
-		super("Dependency Finder");
+		super("DepFinder");
 		guiMain();
 	}
 	Color azul = new Color(37,51,125);
@@ -75,7 +75,7 @@ public class GUI extends JFrame {
 	
 	public void varDirectory() throws IOException{
 		setLayout(new BorderLayout());
-		setTitle("Variable Directory");
+		setTitle("DepFinder");
 		
 		JPanel panel = new JPanel();
 		JPanel logoPanel = new JPanel();
@@ -225,7 +225,7 @@ public class GUI extends JFrame {
 	}
 	
 	public void guiMain() throws IOException{
-		setTitle("Dependency Finder");
+		setTitle("DepFinder");
 		
 		setLayout(new BorderLayout());
 		JPanel panelBotoes = new JPanel();

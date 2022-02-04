@@ -16,6 +16,7 @@ public class Principal {
 	public static void main(String[] args) throws IOException {
 		GUI gui = new GUI();
 		Color azul = new Color(37,51,125);
+//		Color azul = new Color(219,30,47); RED CIn UFPE
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gui.setSize(500, 700);
 		gui.setLocation((

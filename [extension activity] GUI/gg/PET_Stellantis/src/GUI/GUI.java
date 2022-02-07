@@ -189,14 +189,14 @@ public class GUI extends JFrame {
 		JLabel logolabel = getLogo();
 
 		JLabel output = new JLabel("Enter Output Folder");
-//		output.setFont(f);
+		output.setFont(f);
 		output.setForeground(Color.white);
 //		output.setForeground(preto); // CIn UFPE
 		
 		JTextField outDirField = new JTextField(30);
 		outDirField.setFont(f);
 
-		JButton dirBrowse = newBtn("Browse Workspase Folder");
+		JButton dirBrowse = newBtn("Browse Workspace Folder");
 
 		createBrowse(workDirField, dirBrowse);
 

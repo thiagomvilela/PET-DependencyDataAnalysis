@@ -1,7 +1,6 @@
 <h1 align="center">
-  <img alt="CIn-Stellantis" src="./images/cin-stellantis.png" />
+  <img alt="CIn-Stellantis" src="pet-dependency-data-analysis(logo).png" />
 </h1>
-
 
 <h1 align="center">Technological Extension Course: Dependency Data Analysis Applied to Automotive Software </h1>
 
